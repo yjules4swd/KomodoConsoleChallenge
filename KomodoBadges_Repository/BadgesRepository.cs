@@ -9,6 +9,10 @@ namespace KomodoBadges_Repository
     public class BadgesRepository
     {
         public Dictionary<int, List<string>> Badges = new Dictionary<int, List<string>>();
+        public BadgesRepository( )
+        {
+           
+        }
         public int Key = 1000;
         List<string> m = new List<string>();
 

@@ -48,7 +48,7 @@ namespace KomodoBadges
 
         public void listAllBadges()
         {
-            string build = "";
+            /*string build = "";
             foreach (var myaccess in MyBadges.Badges.Keys)
              {
                // Console.WriteLine(myaccess);
@@ -58,8 +58,14 @@ namespace KomodoBadges
                     Console.WriteLine("Badge: " + myaccess + " Door: " + build);
                 }
                
-            }  
-            
+            }*/
+            foreach (KeyValuePair<int, List<string>> kvp in MyBadges.Badges)
+            {
+                foreach (string value in kvp.Value)
+                {
+                    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, value);
+                }
+            }
             /*foreach (KeyValuePair<int, List<string>> Show in MyBadges.Badges)
             {
                 

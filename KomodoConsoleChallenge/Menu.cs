@@ -28,7 +28,7 @@ namespace KomodoConsoleChallenge
             {
 
                 Cafe._MenuItems[i] = string.Format("{0}: {1}\n{2}\n{3}\nprice: {4}\n", i+1, _mealname, _mealdescription, _ingredients, _price++);
-                _mealnumber ++;
+                _mealnumber++;
             }
         }
 

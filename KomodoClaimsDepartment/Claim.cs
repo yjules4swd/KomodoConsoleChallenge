@@ -23,8 +23,8 @@ namespace KomodoConsoleChallenge
         int queueLocation = 0;
         public Claim()
         {
-            
-                
+
+            ReadFromDataBase();
             claimId = "1";
             claimType = "Car";
             description = "Vehicle accident on I-465.";
@@ -58,15 +58,7 @@ namespace KomodoConsoleChallenge
             Claims.queuearray[0] = firstclaim;
             Claims.queuearray[1] = secondclaim;
             Claims.queuearray[2] = thirdclaim;
-            if ((File.Exists("ClaimTable.accdb")))//update database
-            {
-                Console.WriteLine("Do you want to delete the database?(y/n)");
-                string response = Console.ReadLine();
-                if (response == "y")
-                {
-                    File.Delete("ClaimTable.accdb");
-                }
-            }
+            DeleteDataBase();
         }
 
         public void menu()
@@ -183,19 +175,8 @@ namespace KomodoConsoleChallenge
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connect; 
                 command.CommandText = "INSERT INTO Table1 (Claim_ID, Claim_Type, Description, Claim_Amount, Date_Of_Incident, Date_Of_Claim, Is_Valid_Claim) values('" + CID + "','" + CType + "','" + CDescription + "','" + CAmount + "','" + CdateIncident + "','" + CdateClaim + "','" + CIsValid + "')";
-                command.ExecuteNonQuery();
-                using (OleDbDataReader read = command.ExecuteReader())
-                {
-                     
-                    while (read.Read())
-                    {
-                       
-                        Console.WriteLine("{0}", read[" Claim_ID "].ToString());
-                    }
-                    
-                }
-                connect.Close();
-                
+                command.ExecuteNonQuery();                                                 
+                connect.Close();               
             }
             else //Create the database.
             {
@@ -220,6 +201,42 @@ namespace KomodoConsoleChallenge
                 
             }
             
+        }
+
+        public void ReadFromDataBase()
+        {
+            if ((File.Exists("ClaimTable.accdb")))//update database
+            {
+                string SelectString = "SELECT * FROM Table1";
+                string Connection = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=ClaimTable.accdb;";
+                using (OleDbConnection connect = new OleDbConnection(Connection))
+                {
+                    OleDbCommand com = new OleDbCommand(SelectString,connect);
+                    connect.Open();
+                    using (OleDbDataReader read = com.ExecuteReader())
+                    {
+                         
+                        while (read.Read())
+                        {
+                            Console.WriteLine("Claim_ID: {0},\nClaim_Type: {1},\nDescription: {2}\nClaim_Amount: {3}\nDate_Of_Incident: {4}\nDate_Of_Claim: {5}\nIs_Valid_Claim: {6}\n\n", read["Claim_ID"].ToString(), read["Claim_Type"].ToString(), read["Description"].ToString(), read["Claim_Amount"].ToString(), read["Date_Of_Incident"].ToString(), read["Date_Of_Claim"].ToString(), read["Is_Valid_Claim"].ToString());
+                            
+                        }
+                    }
+                }
+            }
+        }
+
+        public void DeleteDataBase()
+        {
+            if ((File.Exists("ClaimTable.accdb")))//update database
+            {
+                Console.WriteLine("Do you want to delete the database?(y/n)");
+                string response = Console.ReadLine();
+                if (response == "y")
+                {
+                    File.Delete("ClaimTable.accdb");
+                }
+            }
         }
     }
 }
