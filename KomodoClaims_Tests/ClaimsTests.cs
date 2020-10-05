@@ -10,8 +10,13 @@ namespace KomodoClaims_Tests
         public void TestMethod1()
         {
             ClaimsRepository Claim = new ClaimsRepository();
-            Claim.queue.Add("Class");
-            Assert.AreEqual(false, Claim.ValueFound("Test"));
+            string check = Claim.CreateDataBase("", "", "", "", "", "", "");
+            string check1 = Claim.ReadFromDataBase();
+            string check3 = Claim.DeleteDataBase();
+            Assert.IsNotNull(check);
+            Assert.IsNotNull(check1);
+            Assert.IsNotNull(check3);
+
         }
     }
 }

@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomodoBadges_Tests", "Komod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomodoClaims_Repository", "KomodoClaims_Repository\KomodoClaims_Repository.csproj", "{E763DE4C-70C6-4FD1-AF5F-3C854EBF8F75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject2", "UnitTestProject2\UnitTestProject2.csproj", "{A06C3637-932A-4C2E-8DD1-4074D4F9ACB5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,10 +63,6 @@ Global
 		{E763DE4C-70C6-4FD1-AF5F-3C854EBF8F75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E763DE4C-70C6-4FD1-AF5F-3C854EBF8F75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E763DE4C-70C6-4FD1-AF5F-3C854EBF8F75}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A06C3637-932A-4C2E-8DD1-4074D4F9ACB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A06C3637-932A-4C2E-8DD1-4074D4F9ACB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A06C3637-932A-4C2E-8DD1-4074D4F9ACB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A06C3637-932A-4C2E-8DD1-4074D4F9ACB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

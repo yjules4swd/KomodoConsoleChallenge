@@ -6,12 +6,17 @@ namespace UnitTestProject1
     [TestClass]
     public class CafeTests
     {
-        
+
         [TestMethod]
         public void TestMethod1()
         {
             CafeRepository MyTest = new CafeRepository();
-            Assert.AreEqual(5, MyTest._MenuItems.Length);
+            string check1 = MyTest.CreateDataBase("", "", "", "", "");
+            string check2 = MyTest.ReadFromDataBase();
+            string check3 = MyTest.DeleteDataBase();
+            Assert.IsNotNull(check1);
+            Assert.AreEqual("read", check2);
+            Assert.AreEqual("deleted", check3);
         }
     }
 }

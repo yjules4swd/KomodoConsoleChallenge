@@ -12,11 +12,13 @@ namespace KomodoBadges_Tests
         public void TestMethod1()
         {
             BadgesRepository MyBadges = new BadgesRepository();
-           bool check = MyBadges.CheckKey(100);
-            Dictionary<int, List<string>> Check = new Dictionary<int, List<string>>();
-            List<string> m = new List<string>();
 
-            Assert.AreEqual(true,check);
+            string check1 = MyBadges.CreateDataBase("", "");
+            string check2 = MyBadges.ReadFromDataBase();
+            string check3 = MyBadges.DeleteDataBase();
+            Assert.IsNotNull(MyBadges.CreateDataBase("", ""));
+            Assert.AreEqual("read", check2);
+            Assert.AreEqual("deleted", check3);
         }
     }
 }

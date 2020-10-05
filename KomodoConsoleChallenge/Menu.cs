@@ -10,8 +10,8 @@ namespace KomodoConsoleChallenge
     public class Menu
     {
         const int _SIZE = 5;
-        
-        int _mealnumber=0;
+
+        int _mealnumber = 0;
         string _mealname;
         string _mealdescription;
         string _ingredients;
@@ -20,6 +20,7 @@ namespace KomodoConsoleChallenge
         CafeRepository Cafe = new CafeRepository();
         public Menu()
         {
+            Cafe.DeleteDataBase();
             _mealname = "thismeal";
             _mealdescription = "thisdescription";
             _ingredients = "thisingredient";
@@ -27,16 +28,18 @@ namespace KomodoConsoleChallenge
             for (int i = 0; i < _SIZE; i++)
             {
 
-                Cafe._MenuItems[i] = string.Format("{0}: {1}\n{2}\n{3}\nprice: {4}\n", i+1, _mealname, _mealdescription, _ingredients, _price++);
-                _mealnumber++;
+                Cafe._MenuItems[i] = string.Format("{0}: {1}\n{2}\n{3}\nprice: {4}\n", i + 1, _mealname, _mealdescription, _ingredients, _price++);
+                _mealnumber = i + 1;
+                Cafe.CreateDataBase(_mealnumber.ToString(), _mealname, _mealdescription, _ingredients, (_price).ToString());
             }
+            Cafe.ReadFromDataBase();
         }
 
         public void add()
         {
             Console.WriteLine("Do you want to add or modify the menu? Press 1 to add or 2 to modify.");
             string choice = Console.ReadLine();
-            if(choice=="1")
+            if (choice == "1")
             {
                 Console.WriteLine("Enter the name for the meal");
                 _mealname = Console.ReadLine();
@@ -62,9 +65,9 @@ namespace KomodoConsoleChallenge
                 temparray[temparray.Length - 1] = string.Format("{0}: {1}\n{2}\n{3}\nprice: {4}\n", _mealnumber, _mealname, _mealdescription, _ingredients, _price);
 
                 Cafe._MenuItems = temparray;
-                
+
             }
-            else if(choice=="2")
+            else if (choice == "2")
             {
                 Console.WriteLine("Enter the menu item you would like to modify");
                 int choice1 = int.Parse(Console.ReadLine());
@@ -83,7 +86,7 @@ namespace KomodoConsoleChallenge
                     check = Console.ReadLine();
                 }
                 _price = double.Parse(check);
-                Cafe._MenuItems[choice1-1] = string.Format("{0}: {1}\n{2}\n{3}\nprice: {4}\n", choice1, _mealname, _mealdescription, _ingredients, _price);
+                Cafe._MenuItems[choice1 - 1] = string.Format("{0}: {1}\n{2}\n{3}\nprice: {4}\n", choice1, _mealname, _mealdescription, _ingredients, _price);
             }
             populatemenu();
         }
@@ -92,9 +95,9 @@ namespace KomodoConsoleChallenge
         {
             Console.WriteLine("Enter the number of the menu item you would like deleted.");
             int delete = int.Parse(Console.ReadLine());
-            Cafe._MenuItems[delete] = string.Format("{0}: blank\nblank\nblank\nprice: blank\n", delete+1);
+            Cafe._MenuItems[delete] = string.Format("{0}: blank\nblank\nblank\nprice: blank\n", delete + 1);
             populatemenu();
-            
+
         }
 
         public void populatemenu()
@@ -103,14 +106,14 @@ namespace KomodoConsoleChallenge
             {
                 Console.WriteLine(Cafe._MenuItems[i]);
             }
-            
+
         }
 
         public void showmenu()
         {
             Console.Write("Welcome to Komodo Cafe. Every meal is served with ten-grain toast or whole wheat buttermilk biscuit,");
             Console.WriteLine("whipped honey butter and homemade fruit puree.");
-            for (int i=0; i < _SIZE; i++)
+            for (int i = 0; i < _SIZE; i++)
             {
                 Console.WriteLine(Cafe._MenuItems[i]);
             }
